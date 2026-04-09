@@ -13,37 +13,31 @@ start_time = time.time()
 attempts = 0
 found = False
 commonPrefix = ""
-cont = 0
 temp = ""
 
 for length in range(1, len(target_password)+1):
-    flag = False
     for guess in itertools.product(chars, repeat=length):
         
         commonPrefix = ''.join(guess)  
-        if target_password.startswith(commonPrefix):
-            temp = commonPrefix
-            print(f"Trying: {commonPrefix} (Attempts: {attempts})")
-            flag = True
-            
-            #break
-        else:
-            attempts += 1   
-            print(f"Trying: {temp+commonPrefix} (Attempts: {attempts})")
-           
-            #breakcd 
-
-        #cont += 1
-        time.sleep(0.01)  # Simulate time taken to check password
-        if temp+commonPrefix == target_password:
-            end_time = time.time()
-            total_time = end_time - start_time
-            print(f"Password found: {temp+commonPrefix}")
-            print(f"Total attempts: {attempts}")
-            print(f"Time taken: {total_time:.2f} seconds")
-            found = True
+        if guess[-1] == target_password[len(commonPrefix)-1]:
+            temp += commonPrefix[-1]
+            print(f"Trying: {temp} (Attempts: {attempts})")
+            if temp == target_password:                
+               end_time = time.time()
+               total_time = end_time - start_time
+               print(f"Password found: {temp}")
+               print(f"Total attempts: {attempts}")
+               print(f"Time taken: {total_time:.2f} seconds")
+               found = True
+               break
             break
+        
+        
+        print(f"Trying: {temp+commonPrefix[-1]} (Attempts: {attempts})")
+        attempts += 1  
+     
+        
+        time.sleep(0.01)  # Simulate time taken to check password
+        
     if found:
         break
-#if not found:
-#    print("Password not found within the given constraints.")
