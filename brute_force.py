@@ -10,14 +10,14 @@ if len(target_password) > 8:
     exit()
 
 start_time = time.time()
-attempts = 0
+attempts = 1
 found = False
 temp = ""
 
 for length in range(1, len(target_password)+1):
     for guess in itertools.product(chars, repeat=length):
         
-        if guess[-1] == target_password[len(guess)-1]:
+        if guess[-1] == target_password[length-1]:
             temp += guess[-1]
             print(f"Trying: {temp} (Attempts: {attempts})")
             if temp == target_password:                
@@ -30,7 +30,7 @@ for length in range(1, len(target_password)+1):
             break
         
         
-        #print(f"Trying: {temp+guess[-1]} (Attempts: {attempts})")
+        print(f"Trying: {temp+guess[-1]} (Attempts: {attempts})")
         attempts += 1  
      
         
