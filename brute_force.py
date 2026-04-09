@@ -12,13 +12,11 @@ if len(target_password) > 8:
 start_time = time.time()
 attempts = 0
 found = False
-commonPrefix = ""
 temp = ""
 
 for length in range(1, len(target_password)+1):
     for guess in itertools.product(chars, repeat=length):
         
-        #commonPrefix = ''.join(guess)  
         if guess[-1] == target_password[len(guess)-1]:
             temp += guess[-1]
             print(f"Trying: {temp} (Attempts: {attempts})")
@@ -29,11 +27,10 @@ for length in range(1, len(target_password)+1):
                print(f"Total attempts: {attempts}")
                print(f"Time taken: {total_time:.2f} seconds")
                found = True
-               break
             break
         
         
-        print(f"Trying: {temp+guess[-1]} (Attempts: {attempts})")
+        #print(f"Trying: {temp+guess[-1]} (Attempts: {attempts})")
         attempts += 1  
      
         
