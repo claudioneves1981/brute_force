@@ -18,9 +18,9 @@ temp = ""
 for length in range(1, len(target_password)+1):
     for guess in itertools.product(chars, repeat=length):
         
-        commonPrefix = ''.join(guess)  
-        if guess[-1] == target_password[len(commonPrefix)-1]:
-            temp += commonPrefix[-1]
+        #commonPrefix = ''.join(guess)  
+        if guess[-1] == target_password[len(guess)-1]:
+            temp += guess[-1]
             print(f"Trying: {temp} (Attempts: {attempts})")
             if temp == target_password:                
                end_time = time.time()
@@ -33,7 +33,7 @@ for length in range(1, len(target_password)+1):
             break
         
         
-        print(f"Trying: {temp+commonPrefix[-1]} (Attempts: {attempts})")
+        print(f"Trying: {temp+guess[-1]} (Attempts: {attempts})")
         attempts += 1  
      
         
